@@ -87,5 +87,50 @@ module.exports = {
 }
 ```
 
+## ESLint
 
+官方链接：[Getting Started with ESLint - ESLint - Pluggable JavaScript Linter](https://eslint.org/docs/latest/use/getting-started)
+
+中文文档：[Configuring ESLint - ESLint中文文档](https://eslint.bootcss.com/docs/user-guide/configuring)
+
+```json
+{
+    "rules": {
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"]
+    }
+}
+```
+
+> 名称 `"semi"` 和 `"quotes"` 是 ESLint 中规则的名称。第一个值是规则的错误级别，可以是以下值之一：
+>
+> ```js
+> - 'off' | 0 关闭规则
+> - 'warn' | 1 警告但不抛异常
+> - 'error' | 2 抛出异常报错, 终止代码进程
+> ```
+
+### eslint安装
+
+```js
+yarn add eslint -D
+```
+
+### 初始化eslint配置
+
+```js
+yarn eslint --init
+```
+
+```js
+? How would you like to use ESLint? ...
+  To check syntax only
+  To check syntax and find problems
+> To check syntax, find problems, and enforce code style // selected it 检查语法 检测问题 并强制规范代码风格
+
+? What type of modules does your project use? ... 
+> JavaScript modules (import/export) // selected
+  CommonJS (require/exports)
+  None of these
+```
 
