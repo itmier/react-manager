@@ -1,12 +1,12 @@
 /*
  * @Author: Tmier
  * @Date: 2023-12-07 22:32:07
- * @LastEditTime: 2023-12-07 22:55:21
+ * @LastEditTime: 2023-12-20 20:42:52
  * @LastEditors: Tmier
  * @Description:
  *
  */
-import { Navigate, createBrowserRouter } from 'react-router-dom'
+import { Navigate, createBrowserRouter, useRoutes } from 'react-router-dom'
 import Login from '@/views/Login'
 import Page_403 from '@/views/403'
 import Page_404 from '@/views/404'
@@ -33,4 +33,8 @@ const routes = [
     element: <Navigate to={'/404'} />
   }
 ]
-export default createBrowserRouter(routes)
+// export default createBrowserRouter(routes)
+
+export default function Router() {
+  return useRoutes(routes)
+}
