@@ -1,7 +1,7 @@
 /*
  * @Author: Tmier
  * @Date: 2023-08-30 22:48:30
- * @LastEditTime: 2023-12-07 22:38:20
+ * @LastEditTime: 2023-12-21 22:01:23
  * @LastEditors: Tmier
  * @Description:
  *
@@ -12,7 +12,7 @@ import App from './App.tsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <App />
+  // </React.StrictMode>
 )
