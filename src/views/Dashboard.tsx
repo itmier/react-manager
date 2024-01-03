@@ -1,7 +1,7 @@
 /*
  * @Author: Tmier
  * @Date: 2023-12-07 22:51:14
- * @LastEditTime: 2023-12-21 21:56:34
+ * @LastEditTime: 2024-01-03 19:49:25
  * @LastEditors: Tmier
  * @Description:
  *
@@ -11,7 +11,7 @@ import { Button } from 'antd'
 
 const Dashboard: React.FC = () => {
   const handleClick = () => {
-    request.get('/users/login', {})
+    request.post<string>('/users/login', {})
   }
   return (
     <>

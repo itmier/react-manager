@@ -1,7 +1,7 @@
 /*
  * @Author: Tmier
  * @Date: 2023-12-20 20:56:43
- * @LastEditTime: 2023-12-21 21:47:09
+ * @LastEditTime: 2024-01-03 22:32:46
  * @LastEditors: Tmier
  * @Description:
  *
@@ -20,6 +20,8 @@ const instance = Axios.create({
 instance.interceptors.request.use(
   config => {
     ShowLoading()
+    // 此处可新建本地环境变量文件: .env.local, 填写code码
+    config.headers.icode = import.meta.env.VITE_IMOOC_ICODE
     const token = localStorage.getItem('token')
     if (token) {
       config.headers.Authorization = 'Token::' + token
@@ -41,7 +43,7 @@ instance.interceptors.response.use(
     const data = response.data
     if (data.code === 50001) {
       localStorage.clear()
-      location.href = '/login'
+      // location.href = '/login'
     } else if (data.code !== 0) {
       message.error(data.msg)
       return Promise.reject(data)
@@ -57,10 +59,10 @@ instance.interceptors.response.use(
 )
 
 export default {
-  get: (url: string, params: AxiosRequestConfig['params']) => {
+  get: <T>(url: string, params: AxiosRequestConfig['params']): Promise<T> => {
     return instance.get(url, { params })
   },
-  post: (url: string, data?: any) => {
+  post: <T>(url: string, data?: object): Promise<T> => {
     return instance.post(url, data)
   }
 }
