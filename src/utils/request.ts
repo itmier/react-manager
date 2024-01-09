@@ -1,7 +1,7 @@
 /*
  * @Author: Tmier
  * @Date: 2023-12-20 20:56:43
- * @LastEditTime: 2024-01-03 22:32:46
+ * @LastEditTime: 2024-01-09 23:09:10
  * @LastEditors: Tmier
  * @Description:
  *
@@ -9,9 +9,10 @@
 import { message } from 'antd'
 import Axios, { AxiosRequestConfig } from 'axios'
 import { HideLoading, ShowLoading } from './loading'
-
+import storage from '@/utils/storage'
+import env from '@/config'
 const instance = Axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_BASE_API,
   timeout: 1000 * 60,
   timeoutErrorMessage: '请求超时了...',
   withCredentials: true
@@ -22,9 +23,15 @@ instance.interceptors.request.use(
     ShowLoading()
     // 此处可新建本地环境变量文件: .env.local, 填写code码
     config.headers.icode = import.meta.env.VITE_IMOOC_ICODE
-    const token = localStorage.getItem('token')
+    const token = storage.get('token')
     if (token) {
       config.headers.Authorization = 'Token::' + token
+      // config.baseURL = import.meta.env.VITE_BASE_API
+      if (env.mock === 'true') {
+        config.baseURL = env.mockApi
+      } else {
+        config.baseURL = env.baseApi
+      }
     }
     return {
       ...config
